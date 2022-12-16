@@ -1,0 +1,35 @@
+<div style=" padding: 0em;" id = "popup">
+    <br/>
+    <h1 mat-dialog-title style="text-align:center;">Purchase Policy</h1>
+    <div mat-dialog-content > 
+      <div class="form-body">
+        <form #pForm="ngForm" class="form text-center">
+          <div class="form-group col-md-12" >
+            User ID <input name="userId" placeholder="User Id" class="form-control" type="text" [(ngModel)]="policyReq.userId" disabled required/>           
+            Policy Name:
+            <select name="policyName" class="form-control" [(ngModel)]="policyReq.policyName" #pName = "ngModel" required>              
+              <option selected>--Policy Name--</option>          
+              <option>Accident Cover</option>
+              <option>Life Insurance</option>
+              <option>Vehicle Insurance</option>
+              <option>Health Insurance</option>
+              <option>Phone Insurance</option>
+            </select>
+            <div
+            *ngIf="pName.invalid && (pName.dirty || pName.touched)"
+            class="alert"
+          >
+            <span style="color: red" *ngIf="pName.errors?.['required']">
+              Policy Name is required.
+            </span>
+          </div>
+            <br/>
+            <div mat-dialog-actions>
+              <button mat-button mat-dialog-close type="button" style="background-color:darkkhaki ;" class="btn btn-secondary" [disabled]="!pForm.form.valid" (click)="purchasePolicy(policyReq)"> Purchase </button>
+            </div>
+            
+          </div>
+        </form>
+      </div>     
+    </div>
+</div>

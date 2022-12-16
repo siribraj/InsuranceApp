@@ -1,0 +1,12 @@
+{
+    "/insuranceapi": {
+      "target": "http://ec2-34-217-101-33.us-west-2.compute.amazonaws.com:8080",
+      "secure": false,
+      "pathRewrite":{
+          "^/insuranceapi":""
+      },
+      "changeOrigin": false,
+      "logLevel": "debug"
+    }
+  }
+  

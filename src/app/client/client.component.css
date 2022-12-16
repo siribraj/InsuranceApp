@@ -1,0 +1,24 @@
+.form {
+  background: whitesmoke;
+  padding: 2em;
+  margin: 6%;
+  width: 50em;
+  outline: none;
+  font-size: 10px;
+  color: black;
+}
+.form-body {
+  display: flex;
+  justify-content: center;  
+}
+.btn {
+  margin: 0.7em;
+  display: inline-flex;
+}
+input {
+  background: whitesmoke;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}

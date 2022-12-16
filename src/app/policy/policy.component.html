@@ -1,0 +1,105 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="#">
+    <img
+      src="https://cdn.vectorstock.com/i/preview-1x/77/92/medical-protection-shield-with-health-cross-vector-37557792.webp"
+      width="40"
+      height="40"
+      class="d-inline-block align-top"
+      alt=""
+    />
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div style="cursor: pointer" class="navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" (click)="showVal()">Add Amount</a>
+      <a class="nav-item nav-link" (click)="openDialog()"
+        >View Wallent Amount</a
+      >
+      <a class="nav-item nav-link" (click)="openPolicyDialog()">Policy List</a>
+      <a style="display: flex;"class="nav-item nav-link" (click)="logout()">Log Out</a>
+    </div>
+  </div>
+</nav>
+<body
+  style="
+    background-image: url(https://img.freepik.com/free-vector/white-background-with-blue-tech-hexagon_1017-19366.jpg?w=826&t=st=1670182038~exp=1670182638~hmac=a960650e5b1be7cc6b0092b3fb3dc7090a59d458c3c813e8772253f10ebd93f7);
+  "
+>
+  <br />
+  <div style="display: flex">
+    <h2 style="margin-right: 5em; margin-left: 0.5em">
+      Hello {{ user.firtName }}
+    </h2>
+  </div>
+  <div style="margin-left: 0.5em" *ngIf="walletNull">
+    <br />
+    <h3>
+      Your Wallet is empty. Please Add some amount in the wallet to proceed with
+      Policy Purchase.
+    </h3>
+  </div>
+  <div style="margin-left: 0.5em" *ngIf="policyNull && !walletNull">
+    <h3>
+      You do not have any active policies. Please proceed with Policy Purchase.
+    </h3>
+  </div>
+  <div *ngIf="showTable">
+    <h3 style="margin-left: 0.5em">
+      Find your active policies and their claim status below.
+    </h3>
+    <br />
+    <table class="table table-hover">
+      <thead>
+        <tr style="background-color: darkseagreen">
+          <th scope="col">Policy Claim ID</th>
+          <th scope="col">User Name</th>
+          <th scope="col">Policy Name</th>
+          <th scope="col">Purchase Date and Time</th>
+          <th scope="col">Claim Status</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          style="background-color: rgb(189, 201, 189)"
+          *ngFor="let p of policyList"
+        >
+          <td>{{ p.policyClaimId }}</td>
+          <td>{{ user.firtName }} {{ user.lastName }}</td>
+          <td>{{ p.policyName }}</td>
+          <td>{{ p.purchaseDttm }}</td>
+          <td>{{ p.claimStatus }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="claim(p.policyName, p.purchaseDttm)"
+            >
+              Claim
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br/>
+  <button
+    style="margin-left: 0.5em"
+    type="button"
+    class="btn btn-info"
+    (click)="purchaseNewPolicy()"
+    *ngIf="!walletNull"
+  >
+    Purchase New Policy
+  </button>
+</body>

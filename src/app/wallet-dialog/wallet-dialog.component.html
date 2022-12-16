@@ -1,0 +1,85 @@
+<div style="padding: 0em" id="popup">
+  <br />
+  <h1 mat-dialog-title style="text-align: center">Wallet Topup</h1>
+  <div mat-dialog-content>
+    <div class="form-body">
+      <form #wForm="ngForm" class="form text-center">
+        <div style="size: small" class="form-group col-md-12">
+          User ID <span style="color: red">
+            *
+          </span><br /><br /><input
+            name="userId"
+            placeholder="User Id"
+            class="form-control"
+            type="text"
+            [(ngModel)]="walletReq.userId"
+            disabled
+            required
+          />
+          <br />Mode Of Payment: <span style="color: red">
+            *
+          </span><br />
+          <select
+            name="modeOfPayment"
+            class="form-control"
+            [(ngModel)]="walletReq.mode"
+            #mode="ngModel"
+            required
+          >
+            <option disabled selected>--Mode Of Payment--</option>
+            <option>Credit Card</option>
+            <option>Debit Card</option>
+            <option>UPI</option>
+          </select>
+          <div
+            *ngIf="mode.invalid && (mode.dirty || mode.touched)"
+            class="alert"
+          >
+            <span style="color: red" *ngIf="mode.errors?.['required']">
+              Payment Mode is required.
+            </span>
+          </div>
+          <br />
+          <input
+            name="amount"
+            placeholder="Amount to be Recharged *"
+            max="10000"
+            min="0"
+            class="form-control"
+            [(ngModel)]="walletReq.amount"
+            type="number"
+            #amount="ngModel"
+            required
+          /><br />
+          <div
+            *ngIf="amount.invalid && (amount.dirty || amount.touched)"
+            class="alert"
+          >
+            <span style="color: red" *ngIf="amount.errors?.['required']">
+              Topup amount value is required.
+            </span>
+            <span style="color: red" *ngIf="amount.errors?.['max']">
+              Amount cannot be greater than 10000.
+            </span>
+            <span style="color: red" *ngIf="amount.errors?.['min']">
+              Amount cannot be lesser than 0.
+            </span>
+          </div>
+          <div mat-dialog-actions>
+            <button
+              mat-button
+              mat-dialog-close
+              type="button"
+              style="background-color: cadetblue"
+              class="btn btn-secondary"
+              [disabled]="!wForm.form.valid"
+              (click)="addWallet(walletReq)"
+            >
+              Add Amount
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

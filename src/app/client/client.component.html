@@ -1,0 +1,186 @@
+<body style=" background-image:
+url(https://life.futuregenerali.in/media/cu0k2uxn/insurance-policy.jpg);
+background-size: 100%; opacity: 70%; " >
+  <nav class="navbar navbar-light" style="background-color: black; opacity: 0.7;">
+    <a class="navbar-brand"
+      href="#"><mat-icon style="font-size: 2em; color: rgb(163, 232, 243)"
+        >home</mat-icon
+      ></a
+    >
+  </nav>  
+  <div>
+    <div *ngIf="register" class="form-body">
+      <form (ngSubmit)="onSubmit()" #cForm="ngForm" class="form text-center">
+        <div class="form-group">
+          <h3>Register</h3>
+          <input
+            type="text"
+            name="firstName"
+            required
+            [(ngModel)]="registerReq.firstName"
+            class="form-control ng-untouched ng-pristine ng-valid"
+            placeholder="FirstName *"
+            #fname="ngModel"
+          /><br />
+          <div
+            *ngIf="fname.invalid && (fname.dirty || fname.touched)"
+            class="alert"
+          >
+            <span style="color: red" *ngIf="fname.errors?.['required']">
+              First Name is required.
+            </span>
+          </div>
+          <input
+            type="text"
+            name="lastName"
+            [(ngModel)]="registerReq.lastName"
+            class="form-control"
+            placeholder="Last Name *"
+            #lastname="ngModel"
+            required
+          /><br />
+          <div
+            *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
+            class="alert"
+          >
+            <span style="color: red" *ngIf="lastname.errors?.['required']">
+              Last Name is required.
+            </span>
+          </div>
+          <input
+            type="text"
+            name="emailId"
+            [(ngModel)]="registerReq.emailId"
+            class="form-control"
+            placeholder="Email ID *"
+            #email="ngModel"
+            [pattern]="emailPattern"
+            required
+          /><br />
+          <div
+            *ngIf="email.invalid && (email.dirty || email.touched)"
+            class="alert"
+          >
+            <span style="color: red" *ngIf="email.errors?.['required']">
+              Email ID is required.
+            </span>
+            <span style="color: red" *ngIf="email.errors?.['pattern']">
+              Email ID is invalid. Valid format is X@Y.Z
+            </span>
+          </div>
+          <input
+            type="text"
+            name="userName"
+            [(ngModel)]="registerReq.userName"
+            class="form-control"
+            placeholder="User Name *"
+            #username="ngModel"
+            required
+          /><br />
+          <div
+            *ngIf="username.invalid && (username.dirty || username.touched)"
+            class="alert"
+          >
+            <span style="color: red" *ngIf="username.errors?.['required']">
+              Username is required.
+            </span>
+          </div>
+          <input
+            type="text"
+            name="password"
+            [(ngModel)]="registerReq.password"
+            class="form-control"
+            placeholder="Password *"
+            #rpassword="ngModel"
+            [pattern]="passwordPattern"
+            required
+          />
+          <br />
+          <div
+            *ngIf="rpassword.invalid && (rpassword.dirty || rpassword.touched)"
+            class="alert"
+          >
+            <span style="color: red" *ngIf="rpassword.errors?.['required']">
+              Password is required.
+            </span>
+            <span style="color: red" *ngIf="rpassword.errors?.['pattern']">
+              Password invalid. Password must contain minimun 8 characters, have atleast one uppercase Alphabet, atleast one lowecase Alphabet, atleast one digit and atleast one Special character(!@#$%^&*).
+            </span>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-warning"
+            [disabled]="!cForm.form.valid"
+            (click)="addClient(registerReq)"
+            value="Submit Data"
+          >
+            Register Client
+          </button>
+        </div>
+      </form>
+    </div>
+    <br />
+    <div *ngIf="loginFlag" class=" bg-container form-body">
+      <form #loginForm="ngForm" name="myForm" class="form text-center">
+        <div class="form-group">
+          <h3 ><b>Sign In to your Account</b></h3>
+          <input
+            type="text"
+            name="userName"
+            [(ngModel)]="loginReq.username"
+            class="form-control"
+            placeholder="User Name *"
+            #name="ngModel"
+            required
+          /><br />
+          <div
+            *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="alert"
+          >
+            <span style="color: red" *ngIf="name.errors?.['required']">
+              Username is required.
+            </span>
+          </div>
+          <input
+            type="password"
+            name="password"
+            [(ngModel)]="loginReq.password"
+            class="form-control"
+            placeholder="Password *"
+            #password="ngModel"
+            required
+          /><br />
+          <div
+            *ngIf="password.invalid && (password.dirty || password.touched)"
+            class="alert"
+          >
+            <span style="color: red" *ngIf="password.errors?.['required']">
+              Password is required.
+            </span>
+          </div>
+          <div style="display: flex">
+            <div>
+              <button
+                type="button"
+                class="btn btn-light"
+                (click)="showRegister()"
+              >
+                Create Account</button
+              ><br />
+            </div>
+            <div>
+              <button
+                type="button"
+                class="btn btn-info"
+                (click)="login(loginReq)"
+                [disabled]="!loginForm.form.valid"
+              >
+                Next</button
+              ><br />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,37 @@
+.bg-container {
+    position: relative; 
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bg-container::before {    
+    content: "";
+    background-image: url(https://img.freepik.com/free-photo/full-shot-happy-family-outdoors_23-2148996630.jpg?w=900&t=st=1670228618~exp=1670229218~hmac=6d923a274e8b14d3cb3a98524e4ba4621a068a41aaef1b66fecce7a77c500e27);
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.75;
+}
+  html, body {
+    margin:0;
+    height:100%;
+    overflow:hidden;
+  }
+  h1 {
+    background-color: black;
+    opacity: 0.6;
+    padding: 0.5em;
+    margin: 2em;
+    position: relative;
+    color: rgb(255, 254, 254);  
+    font-size: 4rem;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    text-align: center;
+  }

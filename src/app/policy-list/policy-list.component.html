@@ -1,0 +1,23 @@
+<div>
+    <h3 style="margin-left: 0.5em">
+        List of available policies and their details
+      </h3><br/>
+  <table class="table table">
+    <thead>
+      <tr style="background-color: rgb(175, 175, 63)">
+        <th scope="col">Policy ID</th>
+        <th scope="col">Policy Name</th>
+        <th scope="col">Policy Coverage</th>
+        <th scope="col">Premium Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of policyList">
+        <td>{{ p.policyId}}</td>
+        <td>{{ p.policyName }}</td>
+        <td>{{ p.policyCoverage }}</td>
+        <td>{{ p.policyPremium }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
